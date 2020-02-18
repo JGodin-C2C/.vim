@@ -7,15 +7,26 @@ filetype off                  " required
 
 filetype plugin indent on     " required
 
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
+
+" Declare the list of plugins.
+Plug 'ajmwagar/vim-emoticons'
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
 "
 " Settings
 "
+set completefunc=emoji#complete
 set noerrorbells                " No beeps
 set number                      " Show line numbers
 set backspace=indent,eol,start  " Makes backspace key more powerful.
 set showcmd                     " Show me what I'm typing
 set showmode                    " Show current mode.
-
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
+set list
 set noswapfile                  " Don't use swapfile
 set nobackup					          " Don't create annoying backup files
 set nowritebackup
@@ -74,8 +85,8 @@ set showmatch
 set smarttab
 
 set et
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 set nrformats-=octal
@@ -117,7 +128,7 @@ inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
-  set mouse=a
+  set mouse=c
 endif
 
 " If linux then set ttymouse
@@ -240,8 +251,12 @@ nnoremap <leader>a :cclose<CR>
 nnoremap <leader><space> :nohlsearch<CR>
 
 " Buffer prev/next
-nnoremap <C-x> :bnext<CR>
-nnoremap <C-z> :bprev<CR>
+nnoremap <C-c> :bnext<CR>
+nnoremap <C-x> :bprev<CR>
+
+" Buffer prev/next
+nnoremap <C-d> :tabprevious<CR>
+nnoremap <C-f> :tabnext<CR>
 
 " Better split switching
 map <C-j> <C-W>j
@@ -501,8 +516,6 @@ let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
 "==================== NerdTree ====================
 " For toggling
 nmap <C-n> :NERDTreeToggle<CR>
-noremap <Leader>n :NERDTreeToggle<cr>
-noremap <Leader>f :NERDTreeFind<cr>
 
 let NERDTreeShowHidden=1
 
@@ -511,6 +524,7 @@ let NERDTreeIgnore=['\.vim$', '\~$', '\.git$', '.DS_Store']
 " Close nerdtree and vim on close file
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+let NERDTreeShowBookmarks=1
 " ==================== vim-json ====================
 
 let g:vim_json_syntax_conceal = 0
