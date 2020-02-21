@@ -64,6 +64,9 @@ set re=1
 " do not hide markdown
 set conceallevel=0
 
+" use indent for folding
+set foldmethod=indent
+
 " open help vertically
 command! -nargs=* -complete=help Help vertical belowright help <args>
 autocmd FileType help wincmd L
@@ -294,6 +297,7 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Act like D and C
 nnoremap Y y$
+nnoremap <F9> za
 
 " Do not show stupid q: window
 map q: :q
